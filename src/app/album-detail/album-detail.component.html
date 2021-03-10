@@ -1,0 +1,13 @@
+<div *ngIf="!loading">
+  <h2>Post #{{album.id}}</h2>
+  <p>User ID: {{album.userId}}</p>
+  <p>Title: {{album.title}}</p>
+
+  <button (click)="goBack()">
+    Go Back
+  </button>
+</div>
+
+<p *ngIf="loading">
+  Loading...
+</p>
