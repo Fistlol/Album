@@ -1,11 +1,21 @@
 <div *ngIf="!loading">
   <h2>Post #{{album.id}}</h2>
   <p>User ID: {{album.userId}}</p>
-  <p>Title: {{album.title}}</p>
+
+  <form (submit)="onSubmit($event)">
+    Title:
+    <input type="text" ngModel="{{album.title}}" name="title">
+    <button (click)="updateAlbum(album)">Save</button>
+  </form>
+
 
   <button (click)="goBack()">
     Go Back
   </button>
+
+  <p>
+    <a routerLink="/albums/{{album.id}}/photos">Photos</a>
+  </p>
 </div>
 
 <p *ngIf="loading">

@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {ALBUMS} from './albums';
 import {Album} from './album';
+import {Photo} from './photo';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import {Album} from './album';
 export class AlbumsService {
   url = 'https://jsonplaceholder.typicode.com';
   options = new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json; charset=UTF-8'
   });
 
   constructor(
@@ -33,6 +34,10 @@ export class AlbumsService {
 
   getAlbum(id: number): Observable<Album> {
     return this.http.get<Album>(`${this.url}/albums/${id}`);
+  }
+
+  getPhotos(id: number): Observable<Photo[]> {
+    return this.http.get<Photo[]>(`${this.url}/albums/${id}/photos`);
   }
 
   createAlbum(album: Album): Observable<Album> {

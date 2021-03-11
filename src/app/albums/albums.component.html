@@ -1,12 +1,25 @@
 <h2>Album List</h2>
 
 <div *ngIf="!loading">
+  <form (submit)="onSubmit($event)">
+    <input type="text" ngModel="{{album?.title}}" name="title" placeholder="Title">
+    <input type="text" ngModel="{{album?.userId}}" name="userId" placeholder="User ID">
+    <button (click)="createAlbum(album)">Create</button>
+  </form>
   <ol>
     <li *ngFor="let album of albums">
       <a routerLink="/albums/{{album.id}}">
         {{album.title}}
       </a>
       <button (click)="deleteAlbum(album.id)">
+        Delete
+      </button>
+    </li>
+    <li *ngIf="creation">
+      <a routerLink="/albums/{{album?.id}}">
+        {{album?.title}}
+      </a>
+      <button (click)="deleteAlbum(album?.id)">
         Delete
       </button>
     </li>
